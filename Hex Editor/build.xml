@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="Bench M" default="appbundle" basedir=".">
+	<property name="src" location="src" />
+	<property name="libs" location="libs/build libs" />
+	<property name="build" location="bin/classes" />
+	<property name="dist" location="bin" />
+	<property name="app" location="bin/HexEditor.app" />
+	<property name="appsrc" location="appfiles" />
+
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" debug="true">
+			<classpath>
+				<pathelement path="${libs}/autocomplete-2.6.0-SNAPSHOT.jar" />
+				<pathelement path="${libs}/commons-io-2.4.jar" />
+				<pathelement path="${libs}/languagesupport-2.6.0-SNAPSHOT.jar" />
+				<pathelement path="${libs}/rsta_spellchecker.jar" />
+				<pathelement path="${libs}/rsyntaxtextarea-2.6.0-SNAPSHOT.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile">
+		<mkdir dir="${dist}" />
+		<jar jarfile="${dist}/HexEditor.jar" basedir="${build}" duplicate="preserve">
+			<manifest>
+				<attribute name="Main-Class" value="com.nickapps.hexeditor.HexEditor" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+
+			<zipgroupfileset dir="${libs}"/>
+			<fileset dir="${src}/com/nickapps/hexeditor/res" includes="**" />
+		</jar>
+	</target>
+
+	<target name="appbundle" depends="dist">
+		<mkdir dir="${app}" />
+		<mkdir dir="${app}/Contents/Java/" />
+		<copydir src="${appsrc}" dest="${app}"></copydir>
+		<copy file="${dist}/HexEditor.jar" tofile="${app}/Contents/Java/HexEditor.jar"/>
+	</target>
+</project>

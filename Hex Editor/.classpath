@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="com/nickapps/hexeditor/res/" kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="src/com/nickapps/hexeditor/res"/>
+	<classpathentry kind="lib" path="/home/nick/java/libs/autocomplete-2.6.0-SNAPSHOT.jar" sourcepath="/home/nick/java/libs/autocomplete java"/>
+	<classpathentry kind="lib" path="/home/nick/java/libs/commons-io-2.4.jar" sourcepath="/home/nick/java/libs/commons-io-2.4-sources.jar"/>
+	<classpathentry kind="lib" path="/home/nick/java/libs/languagesupport-2.6.0-SNAPSHOT.jar" sourcepath="/home/nick/java/libs/lang support java"/>
+	<classpathentry kind="lib" path="/home/nick/java/libs/rsta_spellchecker.jar" sourcepath="/home/nick/java/libs/spell java"/>
+	<classpathentry kind="lib" path="/home/nick/java/libs/rsyntaxtextarea-2.6.0-SNAPSHOT.jar" sourcepath="/home/nick/java/libs/rsyntaxtextarea-2.6.0-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="lib" path="appfiles"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

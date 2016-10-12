@@ -68,12 +68,13 @@ public class HexEditor {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					System.setProperty("apple.laf.useScreenMenuBar", "true");
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				frame = new MainFrame("Hex Editor");
 				
 				InputStream hexpng = HexEditor.class.getResourceAsStream("/img/hexeditor.png");

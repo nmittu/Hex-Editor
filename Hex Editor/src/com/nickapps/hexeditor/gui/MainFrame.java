@@ -1,6 +1,8 @@
 package com.nickapps.hexeditor.gui;
 
-import java.awt.BorderLayout;
+
+import java.awt.*;
+import java.lang.reflect.Method;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -18,8 +20,22 @@ public class MainFrame extends JFrame {
 	public final Menu menu;
 	
 	public MainFrame(String title) {
-
 		super(title);
+
+
+		if(System.getProperty("os.name").toLowerCase().indexOf("mac") >=0){
+			try{
+				Class util = Class.forName("com.apple.eawt.FullScreenUtilities");
+				Class param[] = new Class[]{Window.class, Boolean.TYPE};
+				Method method = util.getMethod("setWindowCanFullScreen", param);
+				method.invoke(util, this, true);
+			} catch (ClassNotFoundException e1){
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+
+
 		tabbedPane = new TextTabbedPane();
 		bottomBar = new BottomBar(this);
 		menu = new Menu();

@@ -187,6 +187,8 @@ public class TextTabbedPane extends JTabbedPane {
 						.getName();
 				this.setTitleAt(getTabCount() - 1, get(getTabCount() - 1).name);
 				updateTitles();
+
+				fireStateChanged();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				return false;

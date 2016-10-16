@@ -30,6 +30,7 @@ import com.nickapps.hexeditor.prefrences.Preferences;
 public class HexEditor {
 	public static MainFrame frame;
 	public static Preferences pref;
+	public static ArrayList<URLClassLoader> classLoaders = new ArrayList<>();
 	public static void restart() throws URISyntaxException, IOException{
 		String javaExe = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
 		File jar = new File(HexEditor.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
@@ -53,6 +54,7 @@ public class HexEditor {
 		for(File file : files){
 			if((!file.isDirectory()) && file.getName().endsWith(".jar")){
 				URLClassLoader cl = new URLClassLoader(new URL[] {file.toURI().toURL()});
+				classLoaders.add(cl);
 				Class infoC = cl.loadClass("Info");
 				
 				AddOnInfo info = (AddOnInfo) infoC.newInstance();

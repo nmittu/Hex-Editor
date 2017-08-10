@@ -1,0 +1,3 @@
+[submodule "IPC"]
+	path = IPC
+	url = https://github.com/nmittu/ipc.git

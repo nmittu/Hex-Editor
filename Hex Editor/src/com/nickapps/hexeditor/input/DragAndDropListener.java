@@ -67,13 +67,7 @@ public class DragAndDropListener implements DropTargetListener {
 				for (File file : files) {
 
 					// Print out the file path
-					TextAreaPanel panel = new TextAreaPanel();
-					panel.file = new TxtFile(file.getAbsolutePath());
-					panel.textBox.setText(panel.file.read());
-					panel.textBox.discardAllEdits();
-					panel.name = file.getName();
-					HexEditor.frame.tabbedPane.add(panel);
-					HexEditor.frame.tabbedPane.setSelectedComponent(panel);
+					HexEditor.frame.tabbedPane.open(file.getAbsolutePath());
 
 				}
 

@@ -11,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
-import javax.swing.JTabbedPane;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -197,6 +197,51 @@ public class TextTabbedPane extends JTabbedPane {
 		}
 
 		return true;
+	}
+
+	public boolean open(String fName){
+		try {
+			TextAreaPanel panel = new TextAreaPanel();
+			panel.file = new TxtFile(fName);
+			panel.textBox.setText(panel.file.read());
+			panel.textBox.discardAllEdits();
+			panel.name = panel.file.getName();
+			add(panel);
+			setSelectedComponent(panel);
+
+			return true;
+		}catch (Exception e){
+			return false;
+		}
+	}
+
+	public void close(String fName){
+		for (int i = 0; i < getTabCount(); i++){
+			TextAreaPanel panel = get(i);
+			try {
+				if (panel.file.getAbsolutePath().equals(fName)) {
+					int dialogResult = JOptionPane.NO_OPTION;
+					if (panel.file != null
+							&& !panel.file.isSaved(panel.textBox.getText())) {
+						dialogResult = JOptionPane
+								.showConfirmDialog(
+										HexEditor.frame,
+										panel.file.getPath()
+												+ " is not saved.\nWould you like to save it?",
+										"Warning", JOptionPane.YES_NO_CANCEL_OPTION);
+					}
+					if (dialogResult == JOptionPane.YES_OPTION) {
+						panel.file.write(panel.textBox.getText());
+						dialogResult = JOptionPane.NO_OPTION;
+					}
+					if (i != -1 && dialogResult == JOptionPane.NO_OPTION) {
+						remove(i);
+					}
+				}
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void newF() {

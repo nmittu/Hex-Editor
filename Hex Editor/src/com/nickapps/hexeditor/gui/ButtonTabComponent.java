@@ -100,8 +100,8 @@ public class ButtonTabComponent extends JPanel {
 				int dialogResult = JOptionPane.NO_OPTION;
 				if (((TextAreaPanel) pane.getComponentAt(i)).file != null
 						&& !((TextAreaPanel) pane.getComponentAt(i)).file
-								.isSaved(((TextAreaPanel) pane
-										.getComponentAt(i)).textBox.getText())) {
+						.isSaved(((TextAreaPanel) pane
+								.getComponentAt(i)).textBox.getText())) {
 					dialogResult = JOptionPane
 							.showConfirmDialog(
 									HexEditor.frame,

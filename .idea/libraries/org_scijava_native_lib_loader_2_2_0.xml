@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="org.scijava:native-lib-loader:2.2.0" type="repository">
+    <properties maven-id="org.scijava:native-lib-loader:2.2.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Hex Editor/libs/native-lib-loader-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Hex Editor/libs/slf4j-api-1.7.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

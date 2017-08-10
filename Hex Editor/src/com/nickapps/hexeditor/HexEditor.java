@@ -22,15 +22,20 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import com.mittudev.ipc.Connection;
+import com.mittudev.ipc.Message;
 import com.nickapps.hexeditor.addon.AddOn;
 import com.nickapps.hexeditor.addon.AddOnInfo;
 import com.nickapps.hexeditor.gui.MainFrame;
+import com.nickapps.hexeditor.hexcommand.MessageListener;
 import com.nickapps.hexeditor.prefrences.Preferences;
 
 public class HexEditor {
 	public static MainFrame frame;
 	public static Preferences pref;
 	public static ArrayList<URLClassLoader> classLoaders = new ArrayList<>();
+	public static Connection conn;
+
 	public static void restart() throws URISyntaxException, IOException{
 		String javaExe = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
 		File jar = new File(HexEditor.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
@@ -67,6 +72,11 @@ public class HexEditor {
 	
 	
 	public static void main(String[] args) {
+		conn = new Connection("HexEditor", 3);
+		conn.subscribe("com.mittudev.HexEditor.CommandLineUtil");
+		conn.setCallback(new MessageListener());
+		conn.startAutoDispatch();
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -148,7 +158,10 @@ public class HexEditor {
 					@Override
 					public void windowClosed(WindowEvent e) {
 						// TODO Auto-generated method stub
-						
+
+						conn.stopAutoDispatch();
+						conn.close();
+						conn.destroy();
 					}
 
 					@Override
